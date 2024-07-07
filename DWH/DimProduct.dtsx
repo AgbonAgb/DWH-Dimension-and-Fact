@@ -1,0 +1,567 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/7/2024 3:42:24 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CYB151-SOFT-02"
+  DTS:CreatorName="CYB151-SOFT-02\Godwin"
+  DTS:DTSID="{F4D66C1E-6A45-4C7E-B556-55292D6B502F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5228.0"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{ADD2AD34-8843-4E2C-A0DC-E90A86BE83EA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{29E7810F-9A91-4F5A-A873-45B0B6F0D96B}"
+      DTS:ObjectName="LocalHost.DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{29E7810F-9A91-4F5A-A873-45B0B6F0D96B}LocalHost.DWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.StagingDb2019.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AA8BB655-85CE-48DD-87CC-03CAD7B6F5CE}"
+      DTS:ObjectName="LocalHost.StagingDb2019.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;User ID=sa;Initial Catalog=StagingDb2019;Provider=SQLNCLI11.1;Application Name=SSIS-Package1-{AA8BB655-85CE-48DD-87CC-03CAD7B6F5CE}LocalHost.StagingDb2019.sa;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIc83jym8qEiVwv8XBoDh3QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAC0pj2W4LrlOCPAvGvEDx157Rl141DgCMKmBoDtJ9xXmwAAAAAOgAAAAAIAACAAAABeBaiwqpzZ/VRHhwccZRAg1f5fgstv5w8YU0bCIfX0TRAAAAB9o+YuRls3o26A9QEJzq14QAAAAIsBzYrvBX8V/hAxV4iV3B0MM9plLSS+uhWYTnhMaK1njUucoIr1aqa1dSCwhwdOp91rcXHmxlKFfDVEajeB7vE</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT Load DimProduct"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{53AA547D-8BF9-4077-AAE1-404E5CFA377E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT Load DimProduct"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT Load DimProduct\OleDb DimProduct"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OleDb DimProduct"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Dim.Product]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Load DimProduct\OleDb DimProduct.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].Columns[EnglishProductName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="EnglishProductName"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[EnglishProductName]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[EnglishProductName]" />
+                    <inputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].Columns[StandardCost]"
+                      cachedDataType="cy"
+                      cachedName="StandardCost"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[StandardCost]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[StandardCost]" />
+                    <inputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].Columns[Color]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="Color"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[Color]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[Color]" />
+                    <inputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].Columns[size]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="size"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[size]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[size]" />
+                    <inputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].Columns[ProductSubcategoryID]"
+                      cachedDataType="i4"
+                      cachedName="ProductSubcategoryID"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryID]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductSubcategoryID]" />
+                    <inputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].Columns[ProductCategoryID]"
+                      cachedDataType="i4"
+                      cachedName="ProductCategoryID"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryID]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductCategoryID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[EnglishProductName]"
+                      dataType="wstr"
+                      length="50"
+                      name="EnglishProductName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[StandardCost]"
+                      dataType="cy"
+                      name="StandardCost" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[Color]"
+                      dataType="wstr"
+                      length="15"
+                      name="Color" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[size]"
+                      dataType="wstr"
+                      length="5"
+                      name="size" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductSubcategoryID]"
+                      dataType="i4"
+                      name="ProductSubcategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategoryID]"
+                      dataType="i4"
+                      name="ProductCategoryID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load DimProduct\OleDb DimProduct.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load DimProduct\OleDb DimProduct.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb DimProduct.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load DimProduct\OleDb DimProduct.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load DimProduct\OleDb Load DimProduct"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OleDb Load DimProduct"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SrcProductView]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.StagingDb2019.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.StagingDb2019.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[EnglishProductName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[EnglishProductName]"
+                      length="50"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[EnglishProductName]"
+                      name="EnglishProductName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[StandardCost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[StandardCost]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[StandardCost]"
+                      name="StandardCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[Color]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                      length="15"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[Color]"
+                      name="Color"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[size]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[size]"
+                      length="5"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[size]"
+                      name="size"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductSubcategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[ProductSubcategoryID]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductSubcategoryID]"
+                      name="ProductSubcategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductCategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[ProductCategoryID]"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].Columns[ProductCategoryID]"
+                      name="ProductCategoryID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[EnglishProductName]"
+                      dataType="wstr"
+                      length="50"
+                      name="EnglishProductName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[StandardCost]"
+                      dataType="cy"
+                      name="StandardCost" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[Color]"
+                      dataType="wstr"
+                      length="15"
+                      name="Color" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[size]"
+                      dataType="wstr"
+                      length="5"
+                      name="size" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[ProductSubcategoryID]"
+                      dataType="i4"
+                      name="ProductSubcategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output].ExternalColumns[ProductCategoryID]"
+                      dataType="i4"
+                      name="ProductCategoryID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[EnglishProductName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[EnglishProductName]"
+                      name="EnglishProductName" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[StandardCost]"
+                      dataType="cy"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[StandardCost]"
+                      name="StandardCost" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[Color]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[Color]"
+                      name="Color" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[size]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[size]"
+                      name="size" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ProductSubcategoryID]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ProductSubcategoryID]"
+                      name="ProductSubcategoryID" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ProductCategoryID]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ProductCategoryID]"
+                      name="ProductCategoryID" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT Load DimProduct.Paths[OLE DB Source Output]"
+              endId="Package\DFT Load DimProduct\OleDb DimProduct.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT Load DimProduct\OleDb Load DimProduct.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\DFT Load DimProduct"
+          TopLeft="228.999996587634,113.999998301268" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT Load DimProduct">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\DFT Load DimProduct\OleDb Load DimProduct"
+          TopLeft="458.999993160367,62.9999990612269" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\DFT Load DimProduct\OleDb DimProduct"
+          TopLeft="475.999992907047,200.999997004867" />
+        <EdgeLayout
+          Id="Package\DFT Load DimProduct.Paths[OLE DB Source Output]"
+          TopLeft="548.899993033707,104.599999061227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,96.3999979436398"
+              Start="0,0"
+              End="0,88.8999979436398">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,88.8999979436398" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Load DimProduct\OleDb Load DimProduct">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Load DimProduct\OleDb DimProduct">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

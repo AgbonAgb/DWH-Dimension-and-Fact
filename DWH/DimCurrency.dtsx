@@ -1,0 +1,438 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/7/2024 3:19:59 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CYB151-SOFT-02"
+  DTS:CreatorName="CYB151-SOFT-02\Godwin"
+  DTS:DTSID="{B1D77D50-7FCD-4170-855E-92770876934B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5228.0"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{0CCDFCC1-18D0-420B-858D-CE71F3503ED4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AD648E7F-28A3-4F74-BC16-20026F3DD5BE}"
+      DTS:ObjectName="LocalHost.DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{AD648E7F-28A3-4F74-BC16-20026F3DD5BE}LocalHost.DWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.StagingDb2019.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{05038089-CB02-47BA-91D2-B3CBEA2AF45E}"
+      DTS:ObjectName="LocalHost.StagingDb2019.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;User ID=sa;Initial Catalog=StagingDb2019;Provider=SQLNCLI11.1;Application Name=SSIS-Package-{05038089-CB02-47BA-91D2-B3CBEA2AF45E}LocalHost.StagingDb2019.sa;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIc83jym8qEiVwv8XBoDh3QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAALwDs9dD07atKYm/9YLlt0FTQl/uUTmUbnvxAQfvvZawAAAAAOgAAAAAIAACAAAAChEf6MX0N/l/VLnV/Ww4Rd2Iz0MroJ8WmD9AvEVVVl3xAAAAAlU0gOFN9vVQC/HNy2eelkQAAAADKqP+UhcKVKww2KCLo0iPI6x3jWMNaHL48+xmeAAu47NChlFjh+znv2lZg0g/wl9ync8582sEdRH67oEpyEMvY</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT Load Dim_Currency"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{23A314A5-1FCD-410F-A472-67BF88DA7D11}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT Load Dim_Currency"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT Load Dim_Currency\OleDB DimCurreny"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OleDB DimCurreny"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Dim.Curreny]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      externalMetadataColumnId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                      lineageId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
+                    <inputColumn
+                      refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].Columns[Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyKey]"
+                      dataType="i4"
+                      name="CurrencyKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB Load DimCurrency"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Src].[Currency]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.StagingDb2019.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.StagingDb2019.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                      length="3"
+                      lineageId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                      dataType="wstr"
+                      length="3"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                      name="CurrencyCode" />
+                    <outputColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT Load Dim_Currency.Paths[OLE DB Source Output]"
+              endId="Package\DFT Load Dim_Currency\OleDB DimCurreny.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\DFT Load Dim_Currency"
+          TopLeft="329.999995082617,148.999997779727" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT Load Dim_Currency">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency"
+          TopLeft="342.999994888902,66.9999990016222" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\DFT Load Dim_Currency\OleDB DimCurreny"
+          TopLeft="348.999994799495,218.999996736646" />
+        <EdgeLayout
+          Id="Package\DFT Load Dim_Currency.Paths[OLE DB Source Output]"
+          TopLeft="434.999994888902,108.599999001622">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.20000008940701,110.399997735024"
+              Start="0,0"
+              End="-9.20000008940701,102.899997735024">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.1999988675118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.1999988675118"
+                    Point2="0,55.1999988675118"
+                    Point3="-4,55.1999988675118" />
+                  <mssgle:LineSegment
+                    End="-5.20000008940701,55.1999988675118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.20000008940701,55.1999988675118"
+                    Point2="-9.20000008940701,55.1999988675118"
+                    Point3="-9.20000008940701,59.1999988675118" />
+                  <mssgle:LineSegment
+                    End="-9.20000008940701,102.899997735024" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Load Dim_Currency\OLEDB Load DimCurrency">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Load Dim_Currency\OleDB DimCurreny">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
